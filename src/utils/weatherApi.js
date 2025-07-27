@@ -37,8 +37,43 @@ export class weatherApi {
       return res.name;
     });
   }
+  _condition() {
+    const conditionMap = {
+      2: "Storm",
+      3: "Rain",
+      5: "Rain",
+      6: "Snow",
+      7: "Fog",
+      8: "Cloudy",
+    };
+    return this._data.then((res) => {
+      const id = res.weather[0].id.toString();
+      if (id === 800) {
+        return "Sunny";
+      } else {
+        return conditionMap[id[0]];
+      }
+    });
+  }
+  _sunrise() {
+    return this._data.then((res) => {
+      const sunrise = res.sys.sunrise;
+      const timezoneOffset = res.timezone;
+      return (sunrise + timezoneOffset) * 1000;
+    });
+  }
+  _sunset() {
+    return this._data.then((res) => {
+      const sunset = res.sys.sunset;
+      const timezoneOffset = res.timezone;
+      return (sunset + timezoneOffset) * 1000;
+    });
+  }
   async weatherData() {
     return {
+      sunrise: await this._sunrise(),
+      sunset: await this._sunset(),
+      condition: await this._condition(),
       weatherType: await this._weatherType(),
       temp: await this._temp(),
       location: await this._location(),

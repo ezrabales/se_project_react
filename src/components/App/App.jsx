@@ -9,8 +9,8 @@ import "../../vendor/fonts.css";
 import defaultClothingItems from "../../utils/defaultClothingItems";
 import { weatherApi } from "../../utils/weatherApi";
 
+const api = new weatherApi();
 function App() {
-  const api = new weatherApi();
   const [weatherData, setWeatherData] = React.useState();
   React.useEffect(() => {
     const fetchWeatherData = async () => {
