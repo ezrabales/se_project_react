@@ -2,12 +2,27 @@ import constants from "./constants";
 
 export class weatherApi {
   constructor() {
+    this._coords = this._getCords();
     this._constants = constants;
     this._data = this._rawData();
   }
-  _rawData() {
+  _getCords() {
+    return fetch("https://ipinfo.io/json")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const loc = data.loc.split(",");
+        return { latitude: loc[0], longitude: loc[1] };
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  async _rawData() {
+    const coords = await this._coords;
     return fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${this._constants.latitude}&lon=${this._constants.longitude}&units=imperial&appid=${this._constants.APIkey}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=imperial&appid=${this._constants.APIkey}`
     ).then((res) => {
       if (res.ok) {
         return res.json();
@@ -58,15 +73,13 @@ export class weatherApi {
   _sunrise() {
     return this._data.then((res) => {
       const sunrise = res.sys.sunrise;
-      const timezoneOffset = res.timezone;
-      return (sunrise + timezoneOffset) * 1000;
+      return sunrise * 1000;
     });
   }
   _sunset() {
     return this._data.then((res) => {
       const sunset = res.sys.sunset;
-      const timezoneOffset = res.timezone;
-      return (sunset + timezoneOffset) * 1000;
+      return sunset * 1000;
     });
   }
   async weatherData() {

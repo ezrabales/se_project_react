@@ -9,6 +9,10 @@ import "../../vendor/fonts.css";
 import defaultClothingItems from "../../utils/defaultClothingItems";
 import { weatherApi } from "../../utils/weatherApi";
 
+const images = import.meta.glob("/src/assets/*.svg", {
+  eager: true,
+  as: "url",
+});
 const api = new weatherApi();
 function App() {
   const [weatherData, setWeatherData] = React.useState();
@@ -104,12 +108,17 @@ function App() {
   };
   return (
     <div className="app">
-      <Header weatherData={weatherData} onClick={handleClothesBtn} />
+      <Header
+        weatherData={weatherData}
+        onClick={handleClothesBtn}
+        images={images}
+      />
 
       <Main
         weatherData={weatherData}
         filteredItems={clothingItems}
         onCardClick={handleCardClick}
+        images={images}
       />
       <ModalWithForm
         formOpen={formOpen}

@@ -1,6 +1,6 @@
 import "./WeatherCard.css";
 
-function WeatherCard({ weatherData }) {
+function WeatherCard({ weatherData, images }) {
   const currentTime = Date.now();
   let sunTime = false;
   if (
@@ -17,8 +17,8 @@ function WeatherCard({ weatherData }) {
       <div className="weather-card">
         <div className="weather-card__container">
           <img
-            src={`/src/assets/${sunTime}${weatherData.condition}.svg`}
-            alt="weather image"
+            src={images[`/src/assets/${sunTime}${weatherData.condition}.svg`]}
+            alt={`${sunTime}${weatherData.condition} image`}
             className="weather-card__img"
           />
           <p className="weather-card__temp">{weatherData?.temp}°F</p>

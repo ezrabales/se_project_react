@@ -1,16 +1,15 @@
 import "./Header.css";
 
-function Header({ weatherData, onClick }) {
+function Header({ weatherData, onClick, images }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
   return (
     <header className="header">
       <div className="header__left">
         <img
-          src="../../src/assets/wtwr.svg"
+          src={images["/src/assets/wtwr.svg"]}
           alt="wtwr Logo"
           className="header__logo"
         />
@@ -24,7 +23,7 @@ function Header({ weatherData, onClick }) {
         </button>
         <p className="header__userName">Ezra Bales</p>
         <img
-          src="../../src/assets/avatar.svg"
+          src={images["/src/assets/avatar.svg"]}
           alt="user avatar"
           className="header__userAvatar"
         />
