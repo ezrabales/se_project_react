@@ -3,10 +3,10 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import React from "react";
 
-function Main({ weatherData, filteredItems, onCardClick }) {
+function Main({ weatherData, filteredItems, onCardClick, images }) {
   return (
     <>
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard weatherData={weatherData} images={images} />
       <h3 className="cards__header">
         Today is {weatherData?.temp}° F / You may want to wear:
       </h3>
