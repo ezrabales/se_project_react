@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 import React from "react";
 
-function ItemModal({ item, onClose, modalOpen }) {
+function ItemModal({ item, onClose, itemModalOpen }) {
   React.useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
@@ -13,7 +13,7 @@ function ItemModal({ item, onClose, modalOpen }) {
         onClose();
       }
     };
-    if (modalOpen) {
+    if (itemModalOpen) {
       document.addEventListener("keydown", handleEsc);
       document.addEventListener("click", handleClickOut);
     }
@@ -21,23 +21,12 @@ function ItemModal({ item, onClose, modalOpen }) {
       document.removeEventListener("keydown", handleEsc);
       document.removeEventListener("click", handleClickOut);
     };
-  }, [modalOpen]);
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      onClose;
-    }
-  });
-  document.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("form")) {
-      onClose;
-    }
-  });
-
-  if (modalOpen) {
+  }, [itemModalOpen]);
+  if (itemModalOpen) {
     return (
-      <div className={`modal ${modalOpen ? "modal-is-open" : ""}`}>
+      <div className={`modal ${itemModalOpen ? "modal-is-open" : ""}`}>
         <div className="modal__container">
-          <button className="modal__close" onClick={onClose}></button>
+          <button className="modal__close" onClick={onClose} />
           <img src={item.link} alt={item.name} className="modal__img" />
           <div className="modal__footer">
             <p className="modal__description">{item.name}</p>
