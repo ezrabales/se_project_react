@@ -1,6 +1,9 @@
 import "./WeatherCard.css";
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function WeatherCard({ weatherData, images }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const currentTime = Date.now();
   let sunTime = false;
   if (
@@ -21,7 +24,11 @@ function WeatherCard({ weatherData, images }) {
             alt={`${sunTime}${weatherData.condition} image`}
             className="weather-card__img"
           />
-          <p className="weather-card__temp">{weatherData?.temp}°F</p>
+          {currentTemperatureUnit === "F" ? (
+            <p className="weather-card__temp">{weatherData?.tempF}°F</p>
+          ) : (
+            <p className="weather-card__temp">{weatherData?.tempC}°C</p>
+          )}
         </div>
       </div>
     );

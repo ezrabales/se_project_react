@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -34,6 +34,7 @@
   right: 24px;
 }
 .modal__footer {
+  position: relative;
   padding: 20px 32px 32px;
 }
 .modal__description {
@@ -50,7 +51,19 @@
   font-size: 20px;
   line-height: 24px;
 }
-
+.modal__delete-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 33.56px;
+  top: 24.6px;
+  color: #ff4d00;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  border: 0;
+  background-color: #00000000;
+}
 .modal__img {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
