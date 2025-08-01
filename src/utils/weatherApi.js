@@ -1,12 +1,12 @@
 import constants from "./constants";
 
-export class weatherApi {
+export class WeatherApi {
   constructor() {
-    this._coords = this._getCords();
+    this._coords = this._getCoords();
     this._constants = constants;
     this._data = this._rawData();
   }
-  _getCords() {
+  _getCoords() {
     return fetch("https://ipinfo.io/json")
       .then((res) => {
         return res.json();
