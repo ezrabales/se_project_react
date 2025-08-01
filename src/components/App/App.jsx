@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import { api } from "../../utils/api";
 import ItemModal from "../ItemModal/ItemModal";
 import "../../vendor/fonts.css";
-import defaultClothingItems from "../../utils/defaultClothingItems";
 import { weatherApi } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import Profile from "../Profile/Profile";

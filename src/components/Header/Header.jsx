@@ -27,7 +27,7 @@ function Header({ weatherData, onClick, images }) {
         <button onClick={onClick} className="header__addClothesBtn">
           + Add clothes
         </button>
-        <NavLink to="/profile/" className="header__profile-info">
+        <NavLink to="/profile" className="header__profile-info">
           <p className="header__userName">Ezra Bales</p>
           <img
             src={images["/src/assets/avatar.svg"]}
