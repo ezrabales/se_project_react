@@ -104,18 +104,20 @@ function App() {
         />
         <Routes>
           <Route
-            path="/se_project_react/" /* if you dont see this in pages, change to "/" */
+            path="/"
             element={
-              <Main
-                weatherData={weatherData}
-                filteredItems={clothingItems}
-                onCardClick={handleCardClick}
-                images={images}
-              />
+              clothingItems && (
+                <Main
+                  weatherData={weatherData}
+                  filteredItems={clothingItems}
+                  onCardClick={handleCardClick}
+                  images={images}
+                />
+              )
             }
           />
           <Route
-            path="/se_project_react/profile" /* if you dont see this in pages, change to "/profile" */
+            path="/profile"
             element={
               <Profile
                 addNewBtn={handleClothesBtn}

@@ -10,7 +10,7 @@ function Header({ weatherData, onClick, images }) {
   return (
     <header className="header">
       <div className="header__left">
-        <NavLink to="/se_project_react/">
+        <NavLink to="/">
           <img
             src={images["/src/assets/wtwr.svg"]}
             alt="wtwr Logo"
@@ -27,10 +27,7 @@ function Header({ weatherData, onClick, images }) {
         <button onClick={onClick} className="header__addClothesBtn">
           + Add clothes
         </button>
-        <NavLink
-          to="/se_project_react/profile/"
-          className="header__profile-info"
-        >
+        <NavLink to="/profile/" className="header__profile-info">
           <p className="header__userName">Ezra Bales</p>
           <img
             src={images["/src/assets/avatar.svg"]}

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https:ezrabales.github.io/se_project_react/",
+  "homepage": "http://ezrabales.github.io/",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
