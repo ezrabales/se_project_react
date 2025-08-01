@@ -21,29 +21,36 @@
 .header__right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 }
 .header__addClothesBtn {
   cursor: pointer;
   display: flex;
-  align-items: center;
-  margin: 8px 8px 0 0;
+  align-items: flex-end;
+  margin: 0;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 18px;
   border: 0;
   padding: 0;
   background-color: #00000000;
   height: 24px;
 }
-.header__userName {
+.header__profile-info {
+  color: #000;
+  text-decoration: none;
   display: flex;
   align-items: center;
+  gap: 20px;
+}
+.header__userName {
+  display: flex;
+  align-items: flex-end;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
-  line-height: 100%;
-  margin: 8px 0 0;
+  line-height: 1;
+  margin: 0;
   height: 25px;
 }

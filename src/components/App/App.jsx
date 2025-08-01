@@ -3,23 +3,30 @@ import React from "react";
 import Header from "../Header/Header";
 import Main from "../main/main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { api } from "../../utils/api";
 import ItemModal from "../ItemModal/ItemModal";
 import "../../vendor/fonts.css";
 import defaultClothingItems from "../../utils/defaultClothingItems";
 import { weatherApi } from "../../utils/weatherApi";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import Profile from "../Profile/Profile";
+import { Routes, Route } from "react-router-dom";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
 const images = import.meta.glob("/src/assets/*.svg", {
   eager: true,
   as: "url",
 });
-const api = new weatherApi();
+const clothesApi = new api();
+const weatherInfoApi = new weatherApi();
 function App() {
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] =
+    React.useState("F");
   const [weatherData, setWeatherData] = React.useState();
   React.useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const data = await api.weatherData();
+        const data = await weatherInfoApi.weatherData();
         setWeatherData(data);
       } catch (err) {
         console.log("error occured:", err);
@@ -27,12 +34,26 @@ function App() {
     };
     fetchWeatherData();
   }, []);
-  const [clothingItems, setClothingItems] =
-    React.useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = React.useState();
+  React.useEffect(() => {
+    const fetchClothingData = async () => {
+      try {
+        const data = await clothesApi.getItems();
+        setClothingItems(data);
+      } catch (err) {
+        console.log("error occured:", err);
+      }
+    };
+    fetchClothingData();
+  }, []);
   const [itemModalOpen, setitemModalOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const handleCardClick = (card) => {
-    setSelectedCard(clothingItems[card.target.id]);
+    setSelectedCard(
+      clothingItems.find((item) => {
+        return item._id == card.target.id;
+      })
+    );
     setitemModalOpen(true);
   };
   const closeItemModal = () => {
@@ -46,96 +67,81 @@ function App() {
   const handleClothesBtn = () => {
     setModalWithFormTitle("New garment");
     setModalWithFormButtonText("Add garment");
-    setModalWithFormChildren(
-      <>
-        <label htmlFor="garment__name_input" className="form__text-label">
-          Name
-          <input
-            id="garment__name_input"
-            type="text"
-            className="form__text-input"
-            placeholder="Name"
-          />
-        </label>
-        <label htmlFor="garment__image_input" className="form__text-label">
-          Image URL
-          <input
-            id="garment__image_input"
-            type="url"
-            className="form__text-input"
-            placeholder="Image"
-          />
-        </label>
-        <div className="form__weather-options">
-          Select the weather type:
-          <label htmlFor="weather-option_hot" className="form__radio-label">
-            <input
-              id="weather-option_hot"
-              name="weather"
-              type="radio"
-              className="form__radio-input"
-            />
-            Hot
-          </label>
-          <label htmlFor="weather-option_warm" className="form__radio-label">
-            <input
-              id="weather-option_warm"
-              name="weather"
-              type="radio"
-              className="form__radio-input"
-            />
-            Warm
-          </label>
-          <label htmlFor="weather-option_cold" className="form__radio-label">
-            <input
-              id="weather-option_cold"
-              name="weather"
-              type="radio"
-              className="form__radio-input"
-            />
-            Cold
-          </label>
-        </div>
-      </>
-    );
     setFormOpen(true);
   };
   const closeForm = () => {
     setModalWithFormTitle();
-    setModalWithFormChildren();
     setModalWithFormButtonText();
     setFormOpen(false);
   };
+  const handleToggleSwitchChange = () => {
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
+  };
+  const handleAddItemSubmit = (item) => {
+    clothesApi.addItem(item);
+    item._id = clothingItems.length;
+    setClothingItems([...clothingItems, item]);
+  };
+  const handleDeleteItem = (item) => {
+    clothesApi.deleteItem(item.target.id);
+    const newClothingItems = clothingItems.filter((clothingItem) => {
+      return clothingItem._id != item.target.id;
+    });
+    setClothingItems(newClothingItems);
+    closeItemModal();
+  };
   return (
     <div className="app">
-      <Header
-        weatherData={weatherData}
-        onClick={handleClothesBtn}
-        images={images}
-      />
-
-      <Main
-        weatherData={weatherData}
-        filteredItems={clothingItems}
-        onCardClick={handleCardClick}
-        images={images}
-      />
-      <ModalWithForm
-        formOpen={formOpen}
-        onClose={closeForm}
-        title={modalWithFormTitle}
-        buttonText={modalWithFormButtonText}
-        children={modalWithFormChildren}
-      />
-      <ItemModal
-        item={selectedCard}
-        onClose={() => {
-          setSelectedCard({});
-          closeItemModal();
-        }}
-        itemModalOpen={itemModalOpen}
-      />
-      <Footer />
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+      >
+        <Header
+          weatherData={weatherData}
+          onClick={handleClothesBtn}
+          images={images}
+        />
+        <Routes>
+          <Route
+            path="/se_project_react/" /* if you dont see this in pages, change to "/" */
+            element={
+              <Main
+                weatherData={weatherData}
+                filteredItems={clothingItems}
+                onCardClick={handleCardClick}
+                images={images}
+              />
+            }
+          />
+          <Route
+            path="/se_project_react/profile" /* if you dont see this in pages, change to "/profile" */
+            element={
+              <Profile
+                addNewBtn={handleClothesBtn}
+                images={images}
+                clothingItems={clothingItems}
+                onCardClick={handleCardClick}
+              />
+            }
+          ></Route>
+        </Routes>
+        <AddItemModal
+          isOpen={formOpen}
+          onAddItem={handleAddItemSubmit}
+          onCloseModal={closeForm}
+        />
+        <ItemModal
+          item={selectedCard}
+          onClose={() => {
+            setSelectedCard({});
+            closeItemModal();
+          }}
+          itemModalOpen={itemModalOpen}
+          onDelete={handleDeleteItem}
+        />
+        <Footer />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }
