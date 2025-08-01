@@ -1,11 +1,13 @@
-export class api {
+export class Api {
   constructor() {
     this._baseUrl = "http://localhost:3001";
   }
   getItems() {
     return fetch(`${this._baseUrl}/items`)
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -20,7 +22,9 @@ export class api {
       body: JSON.stringify(item),
     })
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -31,7 +35,9 @@ export class api {
       method: "DELETE",
     })
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .catch((err) => {
         console.error(err);

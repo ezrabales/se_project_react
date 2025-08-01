@@ -3,10 +3,10 @@ import React from "react";
 import Header from "../Header/Header";
 import Main from "../main/main";
 import Footer from "../Footer/Footer";
-import { api } from "../../utils/api";
+import { Api } from "../../utils/Api";
 import ItemModal from "../ItemModal/ItemModal";
 import "../../vendor/fonts.css";
-import { weatherApi } from "../../utils/weatherApi";
+import { WeatherApi } from "../../utils/WeatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import Profile from "../Profile/Profile";
 import { Routes, Route } from "react-router-dom";
@@ -16,8 +16,8 @@ const images = import.meta.glob("/src/assets/*.svg", {
   eager: true,
   as: "url",
 });
-const clothesApi = new api();
-const weatherInfoApi = new weatherApi();
+const clothesApi = new Api();
+const weatherInfoApi = new WeatherApi();
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] =
     React.useState("F");
@@ -45,7 +45,7 @@ function App() {
     };
     fetchClothingData();
   }, []);
-  const [itemModalOpen, setitemModalOpen] = React.useState(false);
+  const [itemModalOpen, setItemModalOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const handleCardClick = (card) => {
     setSelectedCard(
@@ -53,10 +53,10 @@ function App() {
         return item._id == card.target.id;
       })
     );
-    setitemModalOpen(true);
+    setItemModalOpen(true);
   };
   const closeItemModal = () => {
-    setitemModalOpen(false);
+    setItemModalOpen(false);
   };
   const [formOpen, setFormOpen] = React.useState(false);
   const [modalWithFormTitle, setModalWithFormTitle] = React.useState();
@@ -79,17 +79,20 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
   const handleAddItemSubmit = (item) => {
-    clothesApi.addItem(item);
-    item._id = clothingItems.length;
-    setClothingItems([...clothingItems, item]);
+    clothesApi.addItem(item).then((res) => {
+      closeForm();
+      item._id = res._id;
+      setClothingItems([item, ...clothingItems]);
+    });
   };
   const handleDeleteItem = (item) => {
-    clothesApi.deleteItem(item.target.id);
-    const newClothingItems = clothingItems.filter((clothingItem) => {
-      return clothingItem._id != item.target.id;
+    clothesApi.deleteItem(item.target.id).then((res) => {
+      const newClothingItems = clothingItems.filter((clothingItem) => {
+        return clothingItem._id != item.target.id;
+      });
+      setClothingItems(newClothingItems);
+      closeItemModal();
     });
-    setClothingItems(newClothingItems);
-    closeItemModal();
   };
   return (
     <div className="app">
