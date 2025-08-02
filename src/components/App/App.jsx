@@ -1,16 +1,20 @@
+// css imports
 import "./App.css";
-import React from "react";
+import "../../vendor/fonts.css";
+// external library imports
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+// component imports
 import Header from "../Header/Header";
 import Main from "../main/main";
 import Footer from "../Footer/Footer";
-import { Api } from "../../utils/Api";
 import ItemModal from "../ItemModal/ItemModal";
-import "../../vendor/fonts.css";
+import Profile from "../Profile/Profile";
+import AddItemModal from "../AddItemModal/AddItemModal";
+// api/utils imports
+import { Api } from "../../utils/Api";
 import { WeatherApi } from "../../utils/WeatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import Profile from "../Profile/Profile";
-import { Routes, Route } from "react-router-dom";
-import AddItemModal from "../AddItemModal/AddItemModal";
 
 const images = import.meta.glob("/src/assets/*.svg", {
   eager: true,
@@ -19,50 +23,52 @@ const images = import.meta.glob("/src/assets/*.svg", {
 const clothesApi = new Api();
 const weatherInfoApi = new WeatherApi();
 function App() {
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] =
-    React.useState("F");
-  const [weatherData, setWeatherData] = React.useState();
-  React.useEffect(() => {
+  // state declaration station
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [weatherData, setWeatherData] = useState();
+  const [clothingItems, setClothingItems] = useState();
+  const [isItemModalOpen, setisItemModalOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
+  const [formOpen, setFormOpen] = useState(false);
+  const [modalWithFormTitle, setModalWithFormTitle] = useState();
+  const [modalWithFormChildren, setModalWithFormChildren] = useState();
+  const [modalWithFormButtonText, setModalWithFormButtonText] = useState();
+  useEffect(() => {
     const fetchWeatherData = async () => {
       try {
         const data = await weatherInfoApi.weatherData();
         setWeatherData(data);
       } catch (err) {
-        console.log("error occured:", err);
+        console.error("error occured:", err);
       }
     };
     fetchWeatherData();
   }, []);
-  const [clothingItems, setClothingItems] = React.useState();
-  React.useEffect(() => {
+
+  useEffect(() => {
     const fetchClothingData = async () => {
       try {
         const data = await clothesApi.getItems();
         setClothingItems(data);
       } catch (err) {
-        console.log("error occured:", err);
+        console.error("error occured:", err);
       }
     };
     fetchClothingData();
   }, []);
-  const [itemModalOpen, setItemModalOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
+
   const handleCardClick = (card) => {
     setSelectedCard(
       clothingItems.find((item) => {
         return item._id == card.target.id;
       })
     );
-    setItemModalOpen(true);
+    setisItemModalOpen(true);
   };
   const closeItemModal = () => {
-    setItemModalOpen(false);
+    setisItemModalOpen(false);
   };
-  const [formOpen, setFormOpen] = React.useState(false);
-  const [modalWithFormTitle, setModalWithFormTitle] = React.useState();
-  const [modalWithFormChildren, setModalWithFormChildren] = React.useState();
-  const [modalWithFormButtonText, setModalWithFormButtonText] =
-    React.useState();
+
   const handleClothesBtn = () => {
     setModalWithFormTitle("New garment");
     setModalWithFormButtonText("Add garment");
@@ -78,21 +84,30 @@ function App() {
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
   };
-  const handleAddItemSubmit = (item) => {
-    clothesApi.addItem(item).then((res) => {
-      closeForm();
-      item._id = res._id;
-      setClothingItems([item, ...clothingItems]);
-    });
+  const handleAddItemSubmit = async (item) => {
+    clothesApi
+      .addItem(item)
+      .then((res) => {
+        closeForm();
+        setClothingItems([res, ...clothingItems]);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
   const handleDeleteItem = (item) => {
-    clothesApi.deleteItem(item.target.id).then((res) => {
-      const newClothingItems = clothingItems.filter((clothingItem) => {
-        return clothingItem._id != item.target.id;
+    clothesApi
+      .deleteItem(item.target.id)
+      .then((res) => {
+        const newClothingItems = clothingItems.filter((clothingItem) => {
+          return clothingItem._id != item.target.id;
+        });
+        setClothingItems(newClothingItems);
+        closeItemModal();
+      })
+      .catch((err) => {
+        console.error(err);
       });
-      setClothingItems(newClothingItems);
-      closeItemModal();
-    });
   };
   return (
     <div className="app">
@@ -141,7 +156,7 @@ function App() {
             setSelectedCard({});
             closeItemModal();
           }}
-          itemModalOpen={itemModalOpen}
+          isItemModalOpen={isItemModalOpen}
           onDelete={handleDeleteItem}
         />
         <Footer />

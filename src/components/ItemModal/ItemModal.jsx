@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 import React from "react";
 
-function ItemModal({ item, onClose, itemModalOpen, onDelete }) {
+function ItemModal({ item, onClose, isItemModalOpen, onDelete }) {
   React.useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
@@ -13,7 +13,7 @@ function ItemModal({ item, onClose, itemModalOpen, onDelete }) {
         onClose();
       }
     };
-    if (itemModalOpen) {
+    if (isItemModalOpen) {
       document.addEventListener("keydown", handleEsc);
       document.addEventListener("click", handleClickOut);
     }
@@ -21,10 +21,10 @@ function ItemModal({ item, onClose, itemModalOpen, onDelete }) {
       document.removeEventListener("keydown", handleEsc);
       document.removeEventListener("click", handleClickOut);
     };
-  }, [itemModalOpen]);
-  if (itemModalOpen) {
+  }, [isItemModalOpen]);
+  if (isItemModalOpen) {
     return (
-      <div className={`modal ${itemModalOpen ? "modal-is-open" : ""}`}>
+      <div className={`modal ${isItemModalOpen ? "modal-is-open" : ""}`}>
         <div className="modal__container">
           <button className="modal__close" onClick={onClose} />
           <img src={item.imageUrl} alt={item.name} className="modal__img" />

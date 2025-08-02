@@ -1,8 +1,9 @@
-# React + Vite
+# SE Project React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This is a weather display app with a twist, it shows you what it recommends you wear based on the current weather conditions. By using the users IP address, it uses an Api to find the current weather conditions in the area. Then using the data like tempurature and sky condition, recommends what to wear based on the wardrobe provided. The user can add or delete different articles of clothing from the database easily, as well as change the tempurature units to and from Celcius and Fahrenheit with a click of a button.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Plans for Improvement
+
+When I learn how to make my own database, I will use that and the user wont have to initiate a local database.

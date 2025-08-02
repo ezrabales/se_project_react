@@ -35,72 +35,69 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       onClose={onCloseModal}
       onSubmit={handleSubmit}
       buttonText="Add garment"
-      children={
-        <>
-          <label htmlFor="garment__name_input" className="form__text-label">
-            Name
-            <input
-              id="garment__name_input"
-              type="text"
-              className="form__text-input"
-              placeholder="Name"
-              onChange={handleNameChange}
-              value={name}
-            />
-          </label>
-          <label htmlFor="garment__image_input" className="form__text-label">
-            Image URL
-            <input
-              id="garment__image_input"
-              type="url"
-              className="form__text-input"
-              placeholder="Image"
-              onChange={handleImageUrlChange}
-              value={imageUrl}
-            />
-          </label>
-          <div className="form__weather-options">
-            Select the weather type:
-            <label htmlFor="weather-option_hot" className="form__radio-label">
-              <input
-                id="weather-option_hot"
-                name="weather"
-                type="radio"
-                value="hot"
-                className="form__radio-input"
-                onChange={handleWeatherChange}
-                checked={weather === "hot"}
-              />
-              Hot
-            </label>
-            <label htmlFor="weather-option_warm" className="form__radio-label">
-              <input
-                id="weather-option_warm"
-                name="weather"
-                type="radio"
-                value="warm"
-                className="form__radio-input"
-                onChange={handleWeatherChange}
-                checked={weather === "warm"}
-              />
-              Warm
-            </label>
-            <label htmlFor="weather-option_cold" className="form__radio-label">
-              <input
-                id="weather-option_cold"
-                name="weather"
-                type="radio"
-                value="cold"
-                className="form__radio-input"
-                onChange={handleWeatherChange}
-                checked={weather === "cold"}
-              />
-              Cold
-            </label>
-          </div>
-        </>
-      }
-    />
+    >
+      <label htmlFor="garment__name_input" className="form__text-label">
+        Name
+        <input
+          id="garment__name_input"
+          type="text"
+          className="form__text-input"
+          placeholder="Name"
+          onChange={handleNameChange}
+          value={name}
+        />
+      </label>
+      <label htmlFor="garment__image_input" className="form__text-label">
+        Image URL
+        <input
+          id="garment__image_input"
+          type="url"
+          className="form__text-input"
+          placeholder="Image"
+          onChange={handleImageUrlChange}
+          value={imageUrl}
+        />
+      </label>
+      <div className="form__weather-options">
+        Select the weather type:
+        <label htmlFor="weather-option_hot" className="form__radio-label">
+          <input
+            id="weather-option_hot"
+            name="weather"
+            type="radio"
+            value="hot"
+            className="form__radio-input"
+            onChange={handleWeatherChange}
+            checked={weather === "hot"}
+          />
+          Hot
+        </label>
+        <label htmlFor="weather-option_warm" className="form__radio-label">
+          <input
+            id="weather-option_warm"
+            name="weather"
+            type="radio"
+            value="warm"
+            className="form__radio-input"
+            onChange={handleWeatherChange}
+            checked={weather === "warm"}
+          />
+          Warm
+        </label>
+        <label htmlFor="weather-option_cold" className="form__radio-label">
+          <input
+            id="weather-option_cold"
+            name="weather"
+            type="radio"
+            value="cold"
+            className="form__radio-input"
+            onChange={handleWeatherChange}
+            checked={weather === "cold"}
+          />
+          Cold
+        </label>
+      </div>
+    </ModalWithForm>
   );
 };
 export default AddItemModal;
