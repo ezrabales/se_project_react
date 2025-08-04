@@ -2,7 +2,7 @@
 import "./App.css";
 import "../../vendor/fonts.css";
 // external library imports
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 // component imports
 import Header from "../Header/Header";
