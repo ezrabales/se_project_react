@@ -6,6 +6,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const [name, setName] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
   const [weather, setWeather] = React.useState("");
+  const owner = "Ezra Bales";
   React.useEffect(() => {
     if (isOpen) {
       setName("");
@@ -26,7 +27,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   };
   function handleSubmit(e) {
     e.preventDefault();
-    onAddItem({ name, imageUrl, weather });
+    onAddItem({ name, imageUrl, weather, owner, isLiked: false });
   }
   return (
     <ModalWithForm

@@ -1,8 +1,15 @@
 .sidebar {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+.sidebar__element-container {
+  display: flex;
+  flex-direction: row;
   gap: 16px;
+  margin-bottom: 16px;
 }
 .sidebar__name {
   display: flex;
@@ -14,4 +21,19 @@
   margin: 10px 0 0;
   height: 25px;
   min-width: 90px;
+}
+
+.sidebar__edit-profile,
+.sidebar__log-out {
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin: 0;
+  border: 0;
+  background-color: #00000000;
+  padding: 0;
+  text-align: left;
 }

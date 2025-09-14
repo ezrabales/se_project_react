@@ -4,115 +4,143 @@
       "_id": 0,
       "name": "Beanie",
       "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2",
+      "isLiked": false
     },
     {
       "_id": 1,
       "name": "Boot",
       "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e",
+      "isLiked": false
     },
     {
       "_id": 2,
       "name": "Cap",
       "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591",
+      "isLiked": false
     },
     {
       "_id": 3,
       "name": "Coat",
       "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
+      "isLiked": false
     },
     {
       "_id": 4,
       "name": "Dress",
       "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Dress.png?etag=1f9cd32a311ab139cab43494883720bf"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Dress.png?etag=1f9cd32a311ab139cab43494883720bf",
+      "isLiked": false
     },
     {
       "_id": 5,
       "name": "Hoodie",
       "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
+      "isLiked": false
     },
     {
       "_id": 6,
       "name": "Jacket",
       "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad",
+      "isLiked": false
     },
     {
       "_id": 7,
       "name": "Jeans",
       "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jeans.png?etag=58345e8bef1ce5f95ac882e71d309e6c"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jeans.png?etag=58345e8bef1ce5f95ac882e71d309e6c",
+      "isLiked": false
     },
     {
       "_id": 8,
       "name": "Loafers",
       "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Loafers.png?etag=dc2d6e1ca7b297597406e35c40aef030"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Loafers.png?etag=dc2d6e1ca7b297597406e35c40aef030",
+      "isLiked": false
     },
     {
       "_id": 9,
       "name": "Sandals",
       "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sandals.png?etag=9bea85a77c0306586d2b71a33b626d41"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sandals.png?etag=9bea85a77c0306586d2b71a33b626d41",
+      "isLiked": false
     },
     {
       "_id": 10,
       "name": "Scarf",
       "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c",
+      "isLiked": false
     },
     {
       "_id": 11,
       "name": "Shorts",
       "weather": "Hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba",
+      "isLiked": false
     },
     {
       "_id": 12,
       "name": "Skirt",
       "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Skirt.png?etag=27a6bea7e1b63218820d615876fa31d1"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Skirt.png?etag=27a6bea7e1b63218820d615876fa31d1",
+      "isLiked": false
     },
     {
       "_id": 13,
       "name": "Sneakers",
       "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f",
+      "isLiked": false
     },
     {
       "_id": 14,
       "name": "Sunglasses",
       "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
+      "isLiked": false
     },
     {
       "_id": 15,
       "name": "Sweatshirt",
       "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0",
+      "isLiked": false
     },
     {
       "_id": 16,
       "name": "T-Shirt",
       "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
+      "isLiked": false
     },
     {
       "name": "pants",
       "imageUrl": "https://media.istockphoto.com/photos/mens-trousers-picture-id474853216?k=6&m=474853216&s=612x612&w=0&h=hNpCHIX4cZbFCspq3KaQ0eCNVL286OdM6iT2cxhVT78=",
       "weather": "cold",
+      "isLiked": false,
       "_id": 17
     },
     {
-      "name": "pants",
-      "imageUrl": "https://th.bing.com/th/id/R.489f3bab6d1485f14fc4570cfedb9079?rik=gqTFResSNHZEsg&pid=ImgRaw&r=0",
-      "weather": "hot",
+      "name": "pen",
+      "imageUrl": "https://th.bing.com/th/id/R.fb6ac33af383c3ff2c3e8c430d081777?rik=Ra8Spv2vWobKgg&riu=http%3a%2f%2fthefashionformen.com%2fwp-content%2fuploads%2f2015%2f01%2fpen.jpg&ehk=B1u9SahBhWU3%2bKM%2fn7W0KGZyedZubWr9obJeQfiHs%2bo%3d&risl=&pid=ImgRaw&r=0",
+      "weather": "cold",
+      "owner": "Ezra Bales",
+      "isLiked": false,
       "_id": 18
+    },
+    {
+      "name": "warm pen",
+      "imageUrl": "https://th.bing.com/th/id/R.fb6ac33af383c3ff2c3e8c430d081777?rik=Ra8Spv2vWobKgg&riu=http%3a%2f%2fthefashionformen.com%2fwp-content%2fuploads%2f2015%2f01%2fpen.jpg&ehk=B1u9SahBhWU3%2bKM%2fn7W0KGZyedZubWr9obJeQfiHs%2bo%3d&risl=&pid=ImgRaw&r=0",
+      "weather": "warm",
+      "owner": "Ezra Bales",
+      "isLiked": false,
+      "_id": 19
     }
   ]
 }

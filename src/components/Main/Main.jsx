@@ -5,7 +5,14 @@ import React from "react";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, filteredItems, onCardClick, images }) {
+function Main({
+  weatherData,
+  filteredItems,
+  onCardClick,
+  images,
+  onCardLike,
+  isLoggedIn,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <>
@@ -26,9 +33,12 @@ function Main({ weatherData, filteredItems, onCardClick, images }) {
               .filter((item) => item.weather === weatherData.weatherType)
               .map((item) => (
                 <ItemCard
+                  onCardLike={onCardLike}
                   key={item._id}
                   item={item}
                   onCardClick={onCardClick}
+                  images={images}
+                  isLoggedIn={isLoggedIn}
                 />
               ))}
         </ul>

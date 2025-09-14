@@ -14,13 +14,15 @@ const ClothesSection = ({ addNewBtn, clothingItems, onCardClick }) => {
         <ul className="clothes__list">
           {clothingItems &&
             clothingItems.map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={onCardClick}
-                />
-              );
+              if ((item.owner = "Ezra Bales")) {
+                return (
+                  <ItemCard
+                    key={item._id}
+                    item={item}
+                    onCardClick={onCardClick}
+                  />
+                );
+              }
             })}
         </ul>
       </div>
