@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 // component imports
 import Header from "../Header/Header";
-import Main from "../main/main";
+import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
