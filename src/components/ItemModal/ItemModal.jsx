@@ -2,6 +2,7 @@ import "./ItemModal.css";
 import React from "react";
 
 function ItemModal({ item, onClose, isItemModalOpen, onDelete }) {
+  const isOwn = false;
   React.useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
@@ -33,13 +34,15 @@ function ItemModal({ item, onClose, isItemModalOpen, onDelete }) {
             <p className="modal__weather-requirement">
               Weather: {item.weather}
             </p>
-            <button
-              id={item._id}
-              onClick={onDelete}
-              className="modal__delete-btn"
-            >
-              Delete item
-            </button>
+            {isOwn && (
+              <button
+                id={item._id}
+                onClick={onDelete}
+                className="modal__delete-btn"
+              >
+                Delete item
+              </button>
+            )}
           </div>
         </div>
       </div>

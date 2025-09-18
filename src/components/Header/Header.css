@@ -54,3 +54,52 @@
   margin: 0;
   height: 25px;
 }
+.header__sign-up {
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 0;
+  border: 0;
+}
+
+.header__sign-in {
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  padding: 0;
+  border: 0;
+}
+
+.header__avatar-container {
+  position: relative;
+}
+
+.header__inner-circle {
+  position: absolute;
+  top: 28%;
+  left: 33%;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  color: white;
+}
+
+.header__inner-circle_avatar {
+  width: 37.5px;
+  height: 37.5px;
+  position: absolute;
+  top: calc(50% - 21px);
+  left: calc(50% - 19px);
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  display: block;
+}

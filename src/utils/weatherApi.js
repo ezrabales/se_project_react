@@ -83,9 +83,6 @@ export class WeatherApi {
       return sunset * 1000;
     });
   }
-  addItem() {
-    console.log(this._data);
-  }
   async weatherData() {
     return {
       sunrise: await this._sunrise(),

@@ -7,20 +7,35 @@
 }
 
 .card__title {
-  margin: 0;
   position: absolute;
   top: 15px;
   right: calc(50% - 36.5px);
-  text-align: center;
+  gap: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.card__title_name {
   height: 24px;
   width: 73px;
   background-color: white;
   color: #00000099;
   border-radius: 4px;
+  margin: 0;
+  padding: 2px 12px;
+  text-align: center;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+}
+
+.card__title_like {
+  cursor: pointer;
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0;
 }
 
 .card__image {
