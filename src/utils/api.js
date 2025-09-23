@@ -1,6 +1,6 @@
 export class Api {
   constructor() {
-    this._baseUrl = "http://localhost:3002";
+    this._baseUrl = "http://localhost:3001";
   }
   _checkResponse(res) {
     if (!res.ok) {

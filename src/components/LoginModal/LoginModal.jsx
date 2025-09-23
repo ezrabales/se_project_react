@@ -1,25 +1,21 @@
 import "./LoginModal.css";
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
-const RegisterModal = ({ isOpen, onLogin, onCloseModal }) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  React.useEffect(() => {
-    if (isOpen) {
-      setEmail("");
-      setPassword("");
-    }
-  }, [isOpen]);
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+const RegisterModal = ({ isOpen, onLogin, onCloseModal, setRegisterOpen }) => {
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+  });
   function handleSubmit(e) {
     e.preventDefault();
-    onLogin({ email, password });
+    onLogin({ email: values.email, password: values.password });
+  }
+  function handleRegisterClick(e) {
+    e.preventDefault();
+    onCloseModal();
+    setRegisterOpen(true);
   }
   return (
     <ModalWithForm
@@ -28,27 +24,34 @@ const RegisterModal = ({ isOpen, onLogin, onCloseModal }) => {
       onClose={onCloseModal}
       onSubmit={handleSubmit}
       buttonText="Sign In"
+      extraButton={
+        <button className="form_extra-button" onClick={handleRegisterClick}>
+          or Sign up
+        </button>
+      }
     >
-      <label htmlFor="register__email_input" className="form__text-label">
+      <label className="form__text-label">
         Email
         <input
           id="register__email_input"
+          name="email"
           type="email"
           className="form__text-input"
           placeholder="Email"
-          onChange={handleEmailChange}
-          value={email}
+          onChange={handleChange}
+          value={values.email}
         />
       </label>
-      <label htmlFor="register__password_input" className="form__text-label">
+      <label className="form__text-label">
         Password
         <input
-          id="register__password_input"
+          id="register__password_input-login"
+          name="password"
           type="password"
           className="form__text-input"
           placeholder="Password"
-          onChange={handlePasswordChange}
-          value={password}
+          onChange={handleChange}
+          value={values.password}
         />
       </label>
     </ModalWithForm>

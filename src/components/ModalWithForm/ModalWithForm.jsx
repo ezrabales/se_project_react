@@ -1,3 +1,4 @@
+import useModalClose from "../../hooks/useModalClose";
 import "./ModalWithForm.css";
 import React from "react";
 
@@ -9,29 +10,15 @@ function ModalWithForm({
   onClose,
   onSubmit,
   formOpen,
+  extraButton = "",
 }) {
-  React.useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    const handleClickOut = (e) => {
-      if (e.target.classList.contains("form")) {
-        onClose();
-      }
-    };
-    if (formOpen) {
-      document.addEventListener("keydown", handleEsc);
-      document.addEventListener("click", handleClickOut);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleEsc);
-      document.removeEventListener("click", handleClickOut);
-    };
-  }, [formOpen]);
+  useModalClose(formOpen, onClose);
   return (
-    <div className={`form form_type_${name} ${formOpen ? "form-is-open" : ""}`}>
+    <div
+      className={`modal form form_type_${name} ${
+        formOpen ? "form-is-open" : ""
+      }`}
+    >
       <div className="form__container">
         <button className="form__close" onClick={onClose} />
         <h2 className="form__title">{title}</h2>
@@ -40,6 +27,7 @@ function ModalWithForm({
           <button type="submit" className="form__submit">
             {buttonText}
           </button>
+          {extraButton}
         </form>
       </div>
     </div>

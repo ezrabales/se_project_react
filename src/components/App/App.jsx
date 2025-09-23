@@ -163,7 +163,7 @@ function App() {
       .addItem(item, token)
       .then((res) => {
         closeForm();
-        setClothingItems([res, ...clothingItems]);
+        setClothingItems([res.data, ...clothingItems]);
       })
       .catch((err) => {
         console.error(err);
@@ -171,6 +171,7 @@ function App() {
   };
   const handleLogOut = () => {
     localStorage.removeItem("jwt");
+    setCurrentUser(undefined);
     setIsLoggedIn(false);
   };
   const handleEditProfile = ({ name, avatar }) => {
@@ -218,7 +219,7 @@ function App() {
               })
             );
           })
-          .catch((err) => console.error(err));
+          .catch(console.error);
   };
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -236,48 +237,49 @@ function App() {
             name={currentUser?.name}
             avatar={currentUser?.avatar}
           />
-          <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  clothingItems && (
-                    <Main
-                      weatherData={weatherData}
-                      filteredItems={clothingItems}
-                      onCardClick={handleCardClick}
-                      onCardLike={handleCardLike}
-                      images={images}
-                      isLoggedIn={isLoggedIn}
-                    />
-                  )
-                }
-              />
-
-              <Route
-                path="/profile"
-                element={
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  filteredItems={clothingItems || ""}
+                  onCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
+                  images={images}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
                   <Profile
                     addNewBtn={handleClothesBtn}
                     images={images}
                     clothingItems={clothingItems}
                     onCardClick={handleCardClick}
+                    onCardLike={handleCardLike}
                     onEditProfileClick={setEditProfileOpen}
                     onLogOutClick={handleLogOut}
                   />
-                }
-              ></Route>
-            </Routes>
-          </ProtectedRoute>
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+
           <RegisterModal
             isOpen={registerOpen}
             onRegister={handleRegister}
             onCloseModal={registerClose}
+            setLoginOpen={setLoginOpen}
           />
           <LoginModal
             isOpen={loginOpen}
             onCloseModal={loginClose}
             onLogin={handleLogin}
+            setRegisterOpen={setRegisterOpen}
           />
           <AddItemModal
             isOpen={formOpen}

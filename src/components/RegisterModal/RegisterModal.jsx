@@ -1,37 +1,28 @@
 import "./RegisterModal.css";
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
-const RegisterModal = ({ isOpen, onRegister, onCloseModal }) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [avatar, setAvatar] = React.useState("");
-  React.useEffect(() => {
-    if (isOpen) {
-      setEmail("");
-      setAvatar("");
-      setPassword("");
-      setName("");
-    }
-  }, [isOpen]);
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleAvatarChange = (e) => {
-    setAvatar(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+const RegisterModal = ({ isOpen, onRegister, onCloseModal, setLoginOpen }) => {
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+    name: "",
+    avatar: "",
+  });
   function handleSubmit(e) {
     e.preventDefault();
-    onRegister({ email, password, name, avatar });
+    onRegister({
+      email: values.email,
+      password: values.password,
+      name: values.name,
+      avatar: values.avatar,
+    });
+  }
+  function handleLogInClick(e) {
+    e.preventDefault();
+    onCloseModal();
+    setLoginOpen(true);
   }
   return (
     <ModalWithForm
@@ -40,49 +31,58 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal }) => {
       onClose={onCloseModal}
       onSubmit={handleSubmit}
       buttonText="Sign Up"
+      extraButton={
+        <button className="form_extra-button" onClick={handleLogInClick}>
+          or Log in
+        </button>
+      }
     >
-      <label htmlFor="register__email_input" className="form__text-label">
+      <label className="form__text-label">
         Email *
         <input
           id="register__text_input"
+          name="email"
           type="email"
           className="form__text-input"
           placeholder="Email"
-          onChange={handleEmailChange}
-          value={email}
+          onChange={handleChange}
+          value={values.email}
         />
       </label>
-      <label htmlFor="register__password_input" className="form__text-label">
+      <label className="form__text-label">
         Password *
         <input
-          id="register__password_input"
+          id="register__password_input-register"
+          name="password"
           type="password"
           className="form__text-input"
           placeholder="Password"
-          onChange={handlePasswordChange}
-          value={password}
+          onChange={handleChange}
+          value={values.password}
         />
       </label>
-      <label htmlFor="register__name_input" className="form__text-label">
+      <label className="form__text-label">
         Name *
         <input
           id="register__name_input"
+          name="name"
           type="text"
           className="form__text-input"
           placeholder="Name"
-          onChange={handleNameChange}
-          value={name}
+          onChange={handleChange}
+          value={values.name}
         />
       </label>
-      <label htmlFor="garment__avatar_input" className="form__text-label">
+      <label className="form__text-label">
         Avatar URL *
         <input
           id="garment__avatar_input"
+          name="avatar"
           type="url"
           className="form__text-input"
           placeholder="Avatar"
-          onChange={handleAvatarChange}
-          value={avatar}
+          onChange={handleChange}
+          value={values.avatar}
         />
       </label>
     </ModalWithForm>
