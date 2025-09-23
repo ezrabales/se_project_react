@@ -1,6 +1,15 @@
+if (process.env.NODE_ENV === "production") {
+  console.log("running production");
+} else {
+  console.log("running development");
+}
+
 export class Api {
   constructor() {
-    this._baseUrl = "http://localhost:3001";
+    this._baseUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://api.wtwrezra.crabdance.com"
+        : "http://localhost:3001";
   }
   _checkResponse(res) {
     if (!res.ok) {

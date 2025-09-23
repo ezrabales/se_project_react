@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://ezrabales.github.io/",
+  "homepage": "https://wtwrezra.crabdance.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* bales_ezra@wtwrezra.crabdance.com:/home/bales_ezra/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",
