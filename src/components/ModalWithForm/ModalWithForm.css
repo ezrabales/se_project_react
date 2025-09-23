@@ -104,3 +104,17 @@
   font-size: 16px;
   line-height: 20px;
 }
+
+.form_extra-button {
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #00000080;
+  margin: 0;
+  margin-left: 12px;
+  padding: 0;
+  border: 0;
+  background-color: #00000000;
+}

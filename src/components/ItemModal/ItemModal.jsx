@@ -1,28 +1,11 @@
 import "./ItemModal.css";
 import React from "react";
+import useModalClose from "../../hooks/useModalClose";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function ItemModal({ item, onClose, isItemModalOpen, onDelete }) {
-  const isOwn = false;
-  React.useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    const handleClickOut = (e) => {
-      if (e.target.classList.contains("modal")) {
-        onClose();
-      }
-    };
-    if (isItemModalOpen) {
-      document.addEventListener("keydown", handleEsc);
-      document.addEventListener("click", handleClickOut);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleEsc);
-      document.removeEventListener("click", handleClickOut);
-    };
-  }, [isItemModalOpen]);
+  const currentUser = useCurrentUser();
+  useModalClose(isItemModalOpen, onClose);
   if (isItemModalOpen) {
     return (
       <div className={`modal ${isItemModalOpen ? "modal-is-open" : ""}`}>
@@ -34,7 +17,7 @@ function ItemModal({ item, onClose, isItemModalOpen, onDelete }) {
             <p className="modal__weather-requirement">
               Weather: {item.weather}
             </p>
-            {isOwn && (
+            {currentUser && (
               <button
                 id={item._id}
                 onClick={onDelete}

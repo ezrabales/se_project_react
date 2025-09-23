@@ -7,6 +7,7 @@ function Profile({
   images,
   clothingItems,
   onCardClick,
+  onCardLike,
   onEditProfileClick,
   onLogOutClick,
 }) {
@@ -20,6 +21,8 @@ function Profile({
       <ClothesSection
         addNewBtn={addNewBtn}
         clothingItems={clothingItems}
+        onCardLike={onCardLike}
+        images={images}
         onCardClick={onCardClick}
       />
     </div>
