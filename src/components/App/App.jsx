@@ -1,6 +1,3 @@
-// use json-server --watch db.json --id _id --port 3001 to start server
-// next step: Task 3. Add the editing profile logic
-
 // css imports
 import "./App.css";
 import "../../vendor/fonts.css";
@@ -81,18 +78,18 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setToken(localStorage.getItem("jwt"));
+    const currentToken = localStorage.getItem("jwt");
+    setToken(currentToken);
 
-    if (!token) {
+    if (!currentToken) {
       return;
     }
-    checkToken(token)
+    checkToken(currentToken)
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
       })
       .catch(console.error);
-    setIsLoggedIn(true);
     setLoggingIn(false);
   }, [loggingIn]);
 
@@ -125,15 +122,16 @@ function App() {
     register({ name, password, email, avatar })
       .then(() => {
         setRegisterOpen(false);
-        authorize({ email, password }).then((res) => {
-          if (res.token) {
-            localStorage.setItem("jwt", res.token);
-          }
-        });
+        return authorize({ email, password }); // Add 'return' here
+      })
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+        }
         setLoggingIn(true);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Registration or login error:", err);
       });
   };
   const registerClose = () => {
@@ -261,7 +259,9 @@ function App() {
                   <Profile
                     addNewBtn={handleClothesBtn}
                     images={images}
-                    clothingItems={clothingItems}
+                    clothingItems={clothingItems?.filter((item) => {
+                      return currentUser?._id === item.owner;
+                    })}
                     onCardClick={handleCardClick}
                     onCardLike={handleCardLike}
                     onEditProfileClick={setEditProfileOpen}

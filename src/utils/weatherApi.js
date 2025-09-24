@@ -1,16 +1,12 @@
 import constants from "./constants";
+import { _checkResponse } from "./Api";
 
 export class WeatherApi {
   constructor() {
     this._coords = this._getCoords();
     this._constants = constants;
     this._data = this._rawData();
-  }
-  _checkResponse(res) {
-    if (!res.ok) {
-      return Promise.reject(new Error(`Fetch error: ${res.status}`));
-    }
-    return res.json();
+    this._checkResponse = _checkResponse;
   }
   _getCoords() {
     return fetch("https://ipinfo.io/json")

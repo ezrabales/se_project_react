@@ -5,7 +5,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const currentUser = useCurrentUser();
-  const { values, handleChange } = useForm({
+  const { values, handleChange, setValues } = useForm({
     name: "",
     imageUrl: "",
     weather: "",
@@ -19,6 +19,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       owner: currentUser._id,
       isLiked: false,
     });
+    setValues({ name: "", imageUrl: "", weather: "" });
   }
   return (
     <ModalWithForm
