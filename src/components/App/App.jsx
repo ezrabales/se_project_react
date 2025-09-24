@@ -52,6 +52,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("jwt"));
   const [currentUser, setCurrentUser] = useState();
+  const [loggingIn, setLoggingIn] = useState(false);
   const [modalWithFormTitle, setModalWithFormTitle] = useState();
   const [modalWithFormChildren, setModalWithFormChildren] = useState();
   const [modalWithFormButtonText, setModalWithFormButtonText] = useState();
@@ -91,7 +92,9 @@ function App() {
         setIsLoggedIn(true);
       })
       .catch(console.error);
-  }, []);
+    setIsLoggedIn(true);
+    setLoggingIn(false);
+  }, [loggingIn]);
 
   const handleCardClick = (card) => {
     setSelectedCard(
@@ -121,13 +124,13 @@ function App() {
   const handleRegister = ({ email, password, name, avatar }) => {
     register({ name, password, email, avatar })
       .then(() => {
-        setIsLoggedIn(true);
         setRegisterOpen(false);
         authorize({ email, password }).then((res) => {
           if (res.token) {
             localStorage.setItem("jwt", res.token);
           }
         });
+        setLoggingIn(true);
       })
       .catch((err) => {
         console.error(err);
@@ -142,7 +145,7 @@ function App() {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
         }
-        setIsLoggedIn(true);
+        setLoggingIn(true);
         setLoginOpen(false);
       })
       .catch((err) => {

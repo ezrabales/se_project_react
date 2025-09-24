@@ -39,7 +39,7 @@ function Header({
         </button>
         <NavLink to="/profile" className="header__profile-info">
           <p className="header__userName">{name}</p>
-          {avatar ? (
+          {avatar && name ? (
             <div className="header__avatar-container">
               <img
                 src={images["/src/assets/no-avatar-circle.svg"]}
@@ -59,7 +59,9 @@ function Header({
                 alt="no avatar circle"
                 className="header__userAvatar"
               />
-              <h2 className="header__inner-circle">{name[0].toUpperCase()}</h2>
+              <h2 className="header__inner-circle">
+                {name?.[0]?.toUpperCase()}
+              </h2>
             </div>
           )}
         </NavLink>
