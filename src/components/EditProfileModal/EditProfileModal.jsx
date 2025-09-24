@@ -1,18 +1,29 @@
 import "./EditProfileModal.css";
-import React from "react";
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useForm } from "../../hooks/useForm";
 
 const EditProfileModal = ({ isOpen, onEditProfile, onCloseModal }) => {
-  const { values, handleChange } = useForm({
-    name: "",
-    avatarImage: "",
-  });
   const currentUser = useCurrentUser();
+  const { values, handleChange, setValues } = useForm({
+    name: currentUser?.name,
+    avatarImage: currentUser?.avatar,
+  });
+  useEffect(() => {
+    if (currentUser) {
+      setValues({
+        name: currentUser.name,
+        avatarImage: currentUser.avatar,
+      });
+    }
+  }, [currentUser, setValues]);
   function handleSubmit(e) {
     e.preventDefault();
     onEditProfile({ name: values.name, avatar: values.avatarImage });
+  }
+  if (!isOpen || !currentUser) {
+    return null;
   }
   return (
     <ModalWithForm

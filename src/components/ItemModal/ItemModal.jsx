@@ -17,7 +17,7 @@ function ItemModal({ item, onClose, isItemModalOpen, onDelete }) {
             <p className="modal__weather-requirement">
               Weather: {item.weather}
             </p>
-            {currentUser && (
+            {currentUser._id === item.owner && (
               <button
                 id={item._id}
                 onClick={onDelete}

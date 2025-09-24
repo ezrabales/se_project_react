@@ -4,19 +4,23 @@ if (process.env.NODE_ENV === "production") {
   console.log("running development");
 }
 
+const _checkResponse = (res) => {
+  if (!res.ok) {
+    return Promise.reject(new Error(`Fetch error: ${res.status}`));
+  }
+  return res.json();
+};
+export { _checkResponse };
+
 export class Api {
   constructor() {
     this._baseUrl =
       process.env.NODE_ENV === "production"
         ? "https://api.wtwrezra.crabdance.com"
         : "http://localhost:3001";
+    this._checkResponse = _checkResponse;
   }
-  _checkResponse(res) {
-    if (!res.ok) {
-      return Promise.reject(new Error(`Fetch error: ${res.status}`));
-    }
-    return res.json();
-  }
+
   getItems() {
     return fetch(`${this._baseUrl}/items`, {
       method: "GET",
