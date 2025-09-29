@@ -26,6 +26,7 @@ import {
   update,
   like,
   unlike,
+  toggleLike,
 } from "../../utils/auth";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
@@ -202,25 +203,15 @@ function App() {
   };
   const handleCardLike = ({ _id, likes }) => {
     const token = localStorage.getItem("jwt");
-    !likes.includes(currentUser._id)
-      ? like({ _id, token })
-          .then((updatedItem) => {
-            setClothingItems(
-              clothingItems.map((item) => {
-                return item._id === _id ? updatedItem.data : item;
-              })
-            );
+    toggleLike({ _id, token })
+      .then((updatedItem) => {
+        setClothingItems(
+          clothingItems.map((item) => {
+            return item._id === _id ? updatedItem.data : item;
           })
-          .catch((err) => console.error(err))
-      : unlike({ _id, token })
-          .then((updatedItem) => {
-            setClothingItems(
-              clothingItems.map((item) => {
-                return item._id === _id ? updatedItem.data : item;
-              })
-            );
-          })
-          .catch(console.error);
+        );
+      })
+      .catch(console.error);
   };
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -69,3 +69,13 @@ export const unlike = ({ _id, token }) => {
     },
   }).then(checkResponse);
 };
+
+export const toggleLike = ({ _id, token }) => {
+  return fetch(`${BASE_URL}/likes/${_id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
